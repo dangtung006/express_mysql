@@ -1,18 +1,19 @@
 class UserEntities {
-    email;
-    password;
-    fullname;
-    address;
+    email; //string
+    password; //string
+    fullname;// string
+    address; // string
 
     constructor({ email, password, fullname, address }) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
         this.address = address;
-
-        isValid = this.validate();
-        if (!isValid) throw new Error("Invalid params");
     }
 
-    validate() { }
+    validateGetList() { }
+    validateGetDetail() { }
+    validateCreate() { }
+    validateUpdate() { }
+    validateDelete() { }
 }
