@@ -7,7 +7,9 @@ class UserEntities extends BaseEntities {
     address; // string
 
     constructor({ id, email, password, fullname, address }) {
-        super({ id });
+        if (id) {
+            super({ id });
+        }
         this.email = email;
         this.password = password;
         this.fullname = fullname;
