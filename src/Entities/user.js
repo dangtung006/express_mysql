@@ -1,19 +1,32 @@
-class UserEntities {
+const Joi = require("joi");
+const BaseEntities = require("./base");
+class UserEntities extends BaseEntities {
     email; //string
     password; //string
     fullname;// string
     address; // string
 
-    constructor({ email, password, fullname, address }) {
+    constructor({ id, email, password, fullname, address }) {
+        super({ id });
         this.email = email;
         this.password = password;
         this.fullname = fullname;
         this.address = address;
     }
 
-    validateGetList() { }
-    validateGetDetail() { }
-    validateCreate() { }
+    validateCreate() {
+        const schema = Joi.object({
+            email: Joi.string().alphanum().min(3).max(30).required(),
+            password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+            fullname: Joi.string().required(),
+            address: Joi.string().required(),
+        });
+        return schema.validate(this);
+    }
+    validateGetList({ page, limit }) { }
+    validateGetDetail(id) { }
     validateUpdate() { }
     validateDelete() { }
 }
+
+module.exports = UserEntities;
