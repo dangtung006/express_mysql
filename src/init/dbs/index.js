@@ -1,8 +1,8 @@
 const mysql = require("mysql");
 const DB_HOST = "localhost";
-const DB_NAME = "demo";
+const DB_NAME = "e_learning";
 const DB_USER = "root";
-const DB_PASSWORD = "123456";
+const DB_PASSWORD = "password";
 
 class MyDB {
     constructor() {

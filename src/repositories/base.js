@@ -7,10 +7,19 @@ class BaseRepository {
         this.table = table;
     }
 
+    create(opt) {
+        const sql = `INSERT INTO ${this.table} SET?`;
+        return new Promise((resolve, reject) => {
+            this.dbIntance.query(sql, opt, (err, r) => {
+                if (err) return reject(err);
+                return resolve(r);
+            });
+        });
+    }
     getOneById(id) {
         const sql = `SELECT * FROM ${this.table} WHERE id =${id}`;
         return new Promise((resolve, reject) => {
-            dbIntance.query(sql, (err, row) => {
+            this.dbIntance.query(sql, (err, row) => {
                 if (err) return reject(err);
                 return resolve(row);
             })
@@ -20,7 +29,7 @@ class BaseRepository {
     getAll() {
         const sql = `SELECT * FROM ${this.table}`;
         return new Promise((resolve, reject) => {
-            dbIntance.query(sql, (err, row) => {
+            this.dbIntance.query(sql, (err, row) => {
                 if (err) return reject(err);
                 return resolve(row);
             })
@@ -30,7 +39,7 @@ class BaseRepository {
     getByCondition(conditions) {
         const sql = `SELECT * FROM ${this.table} WHERE ${conditions}`;
         return new Promise((resolve, reject) => {
-            dbIntance.query(sql, (err, row) => {
+            this.dbIntance.query(sql, (err, row) => {
                 if (err) return reject(err);
                 return resolve(row);
             })
@@ -40,7 +49,7 @@ class BaseRepository {
     deleteOneById(id) {
         const sql = `DELETE FROM ${this.table} WHERE id =${id} = ?`;
         return new Promise((resolve, reject) => {
-            dbIntance.query(sql, id, (err, res) => {
+            this.dbIntance.query(sql, id, (err, res) => {
                 if (err) return reject(err);
                 resolve(res);
             })
@@ -50,7 +59,7 @@ class BaseRepository {
     deleteAll() {
         const sql = `DELETE FROM ${this.table}`;
         return new Promise((resolve, reject) => {
-            dbIntance.query(sql, (err, res) => {
+            this.dbIntance.query(sql, (err, res) => {
                 if (err) return reject(err);
                 resolve(res);
             })

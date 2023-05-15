@@ -1,11 +1,22 @@
-GET http://localhost:3000/user/list
+GET http://localhost:3001/auth/users
 
-POST http://localhost:3001/auth/signIn
+###
+POST http://localhost:3001/auth/signUp
+Content-Type: application/json
+
+{
+    "fullname" : "Tung Nguyen",
+    "email" : "tungnguyen001@gmail.com",
+    "password" : "123456",
+    "address" : "Ha Noi"
+}
+
+###
+PATCH  http://localhost:3001/auth/update/1
 Content-Type: application/json
 
 {
     "fullname" : "Peter Dao",
-    "email" : "peterdao@gmail.com",
-    "password" : "123456",
-    "address" : "Ha Noi"
+    "password" : "000000",
+    "address" : "Thai Nguyen"
 }

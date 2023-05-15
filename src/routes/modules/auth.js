@@ -1,8 +1,9 @@
 const express = require('express')
 const BaseRoute = require("./base");
-// const {
-//     wrapperAsync
-// } = require("../../middlewares/request")
+const AuthController = require("../../controllers/auth");
+const {
+    wrapperAsync
+} = require("../../middlewares/request")
 
 class AuthRoutes extends BaseRoute {
     constructor({ middlewares }) {
@@ -14,9 +15,14 @@ class AuthRoutes extends BaseRoute {
     }
 
     initRoutes() {
-        this.router.get("/test", async (req, res) => {
-            return res.send({ rs: "ok" })
-        })
+        this.router.post("/signUp",
+            wrapperAsync(AuthController.signUp));
+
+        this.router.get("/users",
+            wrapperAsync(AuthController.getUsers));
+
+        this.router.patch("/update/:id",
+            wrapperAsync(AuthController.updateUser))
     }
 }
 

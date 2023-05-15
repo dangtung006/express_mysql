@@ -7,9 +7,7 @@ class UserEntities extends BaseEntities {
     address; // string
 
     constructor({ id, email, password, fullname, address }) {
-        if (id) {
-            super({ id });
-        }
+        super({ id });
         this.email = email;
         this.password = password;
         this.fullname = fullname;
@@ -18,12 +16,19 @@ class UserEntities extends BaseEntities {
 
     validateCreate() {
         const schema = Joi.object({
-            email: Joi.string().alphanum().min(3).max(30).required(),
-            password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+            email: Joi.string().min(3).max(30).required(),
+            password: Joi.string()
+                .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
             fullname: Joi.string().required(),
             address: Joi.string().required(),
         });
-        return schema.validate(this);
+
+        return schema.validate({
+            email: this.email,
+            password: this.password,
+            fullname: this.fullname,
+            address: this.address,
+        });
     }
     validateGetList({ page, limit }) { }
     validateGetDetail(id) { }
