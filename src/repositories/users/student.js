@@ -10,7 +10,7 @@ class StudentRepository extends BaseRepository {
         this.user = user;
     }
 
-    async creatUser() {
+    async insert() {
         const { student, email, password, sex, dob, fullname, address } = this.user;
 
         const [stu, addr, name] = await Promise.all([

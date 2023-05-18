@@ -8,7 +8,7 @@ class UserFactoryRepository {
     }
 
     static createUser(accountType, payload) {
-        return new this.userRepositories[accountType](payload).createUser()
+        return new this.userRepositories[accountType](payload).insert()
     }
 }
 UserFactoryRepository.initUserRepository("student", StudentRepository);
