@@ -1,10 +1,10 @@
 const express = require('express')
 const BaseRoute = require("./base");
-const AuthController = require("../../controllers/auth");
 const {
     wrapperAsync
 } = require("../../middlewares/request")
 
+const AuthController = require("../../controllers/auth");
 class AuthRoutes extends BaseRoute {
     constructor({ middlewares }) {
         super({

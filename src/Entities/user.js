@@ -1,8 +1,11 @@
 const Joi = require("joi");
 const BaseEntities = require("./base");
+
 class UserEntities extends BaseEntities {
     email; //string
     password; //string
+    dob;// Date
+    sex; // Tiny
     fullname;// string
     address; // string
 

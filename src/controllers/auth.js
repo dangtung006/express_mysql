@@ -1,4 +1,3 @@
-const AuthService = require("../services/auth");
 const UserEntity = require("../Entities/user");
 const {
     SuccessResponse,
@@ -8,13 +7,16 @@ const {
     BadRequestError
 } = require("../commons/response/error");
 
+const AuthService = require("../services/auth");
 const signUp = async (req, res) => {
 
     const User = new UserEntity(req.body);
     const isValidInputs = User.validateCreate();
 
     if (isValidInputs && isValidInputs["error"]) {
-        throw new BadRequestError(isValidInputs["error"].message);
+        throw new BadRequestError(
+            isValidInputs["error"].message
+        );
     }
 
     return new CreatedResponse({

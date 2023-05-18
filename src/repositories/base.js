@@ -1,5 +1,4 @@
 const DB = require("../init/dbs/index");
-
 class BaseRepository {
     dbIntance = DB.getDBInstance();
 
